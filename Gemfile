@@ -38,3 +38,8 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+#for postgis
+gem 'activerecord-postgis-adapter'
+
+#for bootstrap
+gem 'bootstrap3-rails', '~> 3.2.0'
