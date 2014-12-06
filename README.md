@@ -1,17 +1,14 @@
-# Welcome to your new Koding workspace
+# Global Hackathon code
 
-This workspace, which lives inside the 'Workspaces' folder of your
-home directory, is the place where you can store all relevant and
-related files to this project.
+Simclimate a simulation of co2 and tempatures on the earth if we succeed
 
-Workspaces help keep your projects organized. You can create any
-number of sub-folders within this workspace in order to further
-organize your work.
+requires postgresql database with postgis extension
 
-As you move back and forth between your workspaces, Koding will try
-and remember everything about each workspace. This includes things
-like IDE settings, files open, Terminals open, etc.
+besure you create a user account for this application and for your self
 
-You can create as many new workspaces as you need on your VM.
+rake db:setup
+rake db:migrate
 
-Enjoy and Happy Koding!
+and once you are setup run the sh file in the db folder
+ie cd db/
+sh populate.sh
