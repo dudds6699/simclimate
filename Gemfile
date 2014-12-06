@@ -43,3 +43,7 @@ gem 'activerecord-postgis-adapter'
 
 #for bootstrap
 gem 'bootstrap3-rails', '~> 3.2.0'
+
+#for science
+gem 'rgeo'
+gem 'rgeo-geojson'

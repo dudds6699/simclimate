@@ -83,6 +83,8 @@ GEM
     rgeo-activerecord (1.2.0)
       activerecord (~> 4.0)
       rgeo (~> 0.3)
+    rgeo-geojson (0.3.1)
+      rgeo (~> 0.3)
     sass (3.2.19)
     sass-rails (4.0.5)
       railties (>= 4.0.0, < 5.0)
@@ -124,6 +126,8 @@ DEPENDENCIES
   jquery-rails
   pg
   rails (= 4.1.8)
+  rgeo
+  rgeo-geojson
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   spring
