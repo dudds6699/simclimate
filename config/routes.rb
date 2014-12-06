@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'map/view'
+
+  get 'map/getheatpoints'
+
   root 'home#index'
 
   get 'home/about'
