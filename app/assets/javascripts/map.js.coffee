@@ -4,7 +4,7 @@
 initialize = () ->
     mapOptions = {
         center: { lat: 46.534343, lng: -84.332939},
-        zoom: 8,
+        zoom: 10,
         mapTypeId: google.maps.MapTypeId.SATELLITE
     }
        
