@@ -68,14 +68,14 @@ AddPoints = (arrayPoints, map) ->
 
 
 @AddHeat = (heatmap) ->
-    map = initialize()
-    heatmap.setMap(map);
+    heatmap.setMap(@map);
 
 @RemoveHeat = (heatmap) ->
     heatmap.setMap(null)    
 
 #it starts here
 $(document).ready ->
+    $('#play').data('year', EndingYear - StartingYear)
     start()
     $('#calculate').on( 'click', () ->
         calculate()
@@ -98,6 +98,8 @@ $(document).ready ->
     heats = AddHeat(HeatMapArray[0], map)
     
     StartingYear = StartingYear + 1
+    
+    
  
 
             
@@ -120,10 +122,12 @@ recalculateCall = (collection) ->
             page.push(data)
             $('.store').data('storage', page)
             data
+    
             
             
 playSim = () ->
     newPointArray = initailizeCities( $('.store').data('storage'))
+    
     end = EndingYear - StartingYear
     $('.store').data('storage', '')
     if newPointArray != undefined then HeatMapArray.push(createHeatMap(newPointArray))
@@ -137,6 +141,8 @@ playSim = () ->
 
         
 $(document).ajaxComplete () ->
-    if $('.store').data('storage') != null then $('#play').show()
+    records = 2487
+    storage = $('.store').data('storage')
+    if storage != null && storage != "" && storage.length == records then $('#play').show()
         
     

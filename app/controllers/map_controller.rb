@@ -21,7 +21,7 @@ class MapController < ApplicationController
   
   def movethepoints
     #2354 should get 63
-      pwr = 20
+      pwr = 1
     
       x = params[:x].to_f
       y = params[:y].to_f
