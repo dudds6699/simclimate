@@ -47,3 +47,4 @@ gem 'bootstrap3-rails', '~> 3.2.0'
 #for science
 gem 'rgeo'
 gem 'rgeo-geojson'
+gem 'squirm_rails'
