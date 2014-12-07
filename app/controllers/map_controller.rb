@@ -11,7 +11,7 @@ class MapController < ApplicationController
       
       city.each do |item|
           point = item.geom
-          points << { :coords => [point.y, point.x], :co2 => 3 }
+          points << { :coords => [point.y, point.x], :co2 => item.data_2010 }
       end
       
       @answer = points.to_json
@@ -21,20 +21,27 @@ class MapController < ApplicationController
   
   def movethepoints
     #2354 should get 63
-      pwr = 0.25
+      pwr = 20
     
-      pt = City.find(2354).geom
-      wind = Wind.where("ST_DWithin(geom, ST_GeomFromText('POINT(#{pt.x} #{pt.y})',4326), 1)").first.geom[0]
+      x = params[:x].to_f
+      y = params[:y].to_f
+      wind = Wind.where("ST_DWithin(geom, ST_GeomFromText('POINT(#{x} #{y})',4326), 1)").first
       
-      wStartPT = wind.start_point
-      wEndPT = wind.end_point
+    if wind then
+        wind = wind.geom[0]
+      
+        wStartPT = wind.start_point
+        wEndPT = wind.end_point
       
       
       
-      wAdd = [(wEndPT.y - wStartPT.y) * pwr,  (wEndPT.x - wStartPT.x) * pwr] 
-      pMove = [(pt.y + wAdd[0]) , (pt.x + wAdd[1])]
-     
-      @answer = [[pt.y, pt.x] , pMove].to_json
+        wAdd = [(wEndPT.y - wStartPT.y) * pwr,  (wEndPT.x - wStartPT.x) * pwr] 
+        pMove = [(y + wAdd[0]) , (x + wAdd[1])]
+        render :json => {:coords => pMove}
+    else
+     render :json => {:coords => [y, x]}
+    end
+      
   end
   
 end

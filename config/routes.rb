@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get 'map/view'
 
   get 'map/getheatpoints'
+  
+  get 'map/movethepoints'
 
   root 'home#index'
 
