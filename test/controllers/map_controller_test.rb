@@ -10,5 +10,4 @@ class MapControllerTest < ActionController::TestCase
     get :getheatpoints
     assert_response :success
   end
-
 end
