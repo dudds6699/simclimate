@@ -13,14 +13,14 @@ class MapController < ApplicationController
           points << [point.y, point.x]
       end
       
-      #@answer = points.to_json
-      movethepoints
+      @answer = points.to_json
+      
 
   end
   
   def movethepoints
     #2354 should get 63
-      pwr = 0.50
+      pwr = 0.25
     
       pt = City.find(2354).geom
       wind = Wind.where("ST_DWithin(geom, ST_GeomFromText('POINT(#{pt.x} #{pt.y})',4326), 1)").first.geom[0]
