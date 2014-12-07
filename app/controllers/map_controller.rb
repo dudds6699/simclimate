@@ -10,9 +10,7 @@ class MapController < ApplicationController
       
       city.each do |item|
           point = item.geom
-          
           points << [point.y, point.x]
-          
       end
       
       @answer = points.to_json
@@ -22,16 +20,16 @@ class MapController < ApplicationController
   
   def movethepoints
     #2354 should get 63
-      city = City.find(2354)
-      pt = city.geom
-      wind = Wind.where("ST_DWithin(geom, ST_GeomFromText('POINT(#{pt.x} #{pt.y})',4326), 1)").first.geom
+      pt = City.find(2354).geom
+      wind = Wind.where("ST_DWithin(geom, ST_GeomFromText('POINT(#{pt.x} #{pt.y})',4326), 1)").first.geom[0]
       
-    if wind then
-      @answer = wind[0]
-    else
-      @answer = 0
-    end
-    
+      wStartPT = wind.start_point
+      wEndPT = wind.end_point
+      
+      
+      
+     
+      @answer = [[pt.y, pt.x] , wVector].to_json
   end
   
 end
