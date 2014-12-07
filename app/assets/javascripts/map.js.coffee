@@ -34,7 +34,8 @@ AddPoints = (arrayPoints, map) ->
 
 CreatePointArray = (data) ->
     for d in data
-        new google.maps.LatLng(d[0], d[1])
+        new google.maps.LatLng(d.coords[0], d.coords[1])
+        
         
 
 AddHeat = (data, map) ->
@@ -43,12 +44,19 @@ AddHeat = (data, map) ->
         data: pointArray
     });
     heatmap.setMap(map);
+
+    
+    
+
+
     
 
 #it starts here
 $(document).ready ->
     initialPoints = $('#map-canvas').data('point')
+    
     convertedData = CreatePointArray(initialPoints)
+    
     
     map = initialize()
     #AddPoints(initialPoints , map)

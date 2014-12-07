@@ -5,12 +5,13 @@ class MapController < ApplicationController
   def getheatpoints
       #2354 should get 63
       #city = City.find(2354)
+      
       city = City.all
       points = []
       
       city.each do |item|
           point = item.geom
-          points << [point.y, point.x]
+          points << { :coords => [point.y, point.x], :co2 => 3 }
       end
       
       @answer = points.to_json
