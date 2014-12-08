@@ -1,15 +1,7 @@
 Rails.application.routes.draw do
-  get 'map/view'
-
-  get 'map/getheatpoints'
+  root 'home#view'
   
-  get 'map/movethepoints'
-
-  root 'home#index'
-
-  get 'home/about'
-
-  get 'home/faq'
+  get 'home/pointmover'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
