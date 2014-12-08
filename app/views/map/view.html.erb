@@ -1,5 +1,18 @@
+<h1>Map#getheatpoints</h1>
+<p>Find me in app/views/map/getheatpoints.html.erb</p>
 <div class="row">
     <div class="col-sm-offset-1">
-        <div id="map-canvas"></div>
+        <div id="map-canvas" data-point="<%= @answer %>" ></div>
     </div>
 </div>
+<div class="row">
+    <div class="col-sm-12">
+        <div id="calculate" class="btn btn-primary">Load</div>
+        <div id="play" class="btn btn-primary" style="display:none" data-score="0">Play</div>
+    </div>
+</div>
+<div class="store one" data-storage=""></div>
+<div class="store two" data-storage=""></div>
+<div class="store three" data-storage=""></div>
+<div class="store four" data-storage=""></div>
+<div class="store five" data-storage=""></div>

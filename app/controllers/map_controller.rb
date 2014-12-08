@@ -1,8 +1,5 @@
 class MapController < ApplicationController
   def view
-  end
-
-  def getheatpoints
       #2354 should get 63
       #city = City.find(2354)
       
@@ -15,9 +12,8 @@ class MapController < ApplicationController
       end
       
       @answer = points.to_json
-      
-
   end
+
   
   def movethepoints
     #2354 should get 63

@@ -83,7 +83,8 @@ $(document).ready ->
     $('#play').on('click', () ->
         playSim()
     )
-    
+
+@years = [".one", ".two", ".three", ".four", ".five"]    
     
 @start= () ->    
     initialPoints = $('#map-canvas').data('point')
@@ -106,21 +107,20 @@ $(document).ready ->
 calculate = () ->
     $('#play').hide()
     end = EndingYear - StartingYear
-    newCo2 =
-        for i in [1...end]
-            recalculate = this.ClimateCitiesArray[i - 1]
-            recalculateCall(recalculate)
-            
-    #recalculateCall(newCo2)
+    recalculate = this.ClimateCitiesArray[0]
+    recalculateCall(recalculate, @years[0])
+    $('#play').data('score', 0)
+    
+    
              
     
-recalculateCall = (collection) ->
+recalculateCall = (collection, cssClass) ->
     for it in collection
         request = $.get '/map/movethepoints?y=' + it.coords[0] + "&x=" + it.coords[1] , (data) ->
-            page = $('.store').data('storage')
-            page = [] if page == null || page == ""
+            page = $(cssClass).data('storage')
+            page = [] if page == null || page == "" || page == undefined
             page.push(data)
-            $('.store').data('storage', page)
+            $(cssClass).data('storage', page)
             data
     
             
@@ -129,8 +129,16 @@ playSim = () ->
     newPointArray = initailizeCities( $('.store').data('storage'))
     
     end = EndingYear - StartingYear
-    $('.store').data('storage', '')
     if newPointArray != undefined then HeatMapArray.push(createHeatMap(newPointArray))
+    
+    $('.store').each( () ->
+        gp = initailizeCities($(this).data('storage'))
+        HeatMapArray.push(createHeatMap(gp))
+    )
+    
+    
+    
+    
     for i in HeatMapArray
         RemoveHeat(i)
         
@@ -141,8 +149,20 @@ playSim = () ->
 
         
 $(document).ajaxComplete () ->
-    records = 2487
-    storage = $('.store').data('storage')
-    if storage != null && storage != "" && storage.length == records then $('#play').show()
+        tscore = $('#play').data('score')
+        years = [".one", ".two", ".three", ".four", ".five"] 
+        
+        check = $(years[tscore]).data('storage')
+        if (tscore != 5 && check != null && check != "" && check.length == 2487)
+            tscore = tscore + 1
+            $('#play').data('score', tscore)
+            recalculateCall($(years[tscore - 1]).data('storage'), years[tscore])
+        else if tscore == 5
+            $('#play').show()    
+            
+        
+        
+        
+    
         
     
